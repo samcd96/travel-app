@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-travelappfront-dev-115223-authRole",
+      "UnauthRoleArn": "arn:aws:iam::866518846783:role/amplify-travelappfront-dev-115223-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::866518846783:role/amplify-travelappfront-dev-115223-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-travelappfront-dev-115223-deployment",
+      "UnauthRoleName": "amplify-travelappfront-dev-115223-unauthRole",
+      "StackName": "amplify-travelappfront-dev-115223",
+      "StackId": "arn:aws:cloudformation:eu-west-2:866518846783:stack/amplify-travelappfront-dev-115223/2b2ee490-3627-11eb-b90c-02b4f1dcccde",
+      "AmplifyAppId": "d3tvmgk6llk8c"
+    },
+    "categories": {
+      "auth": {
+        "travelappfront1fc3dc64": {}
+      }
+    }
+  }
+}

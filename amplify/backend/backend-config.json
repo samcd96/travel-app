@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "travelappfront1fc3dc64": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
