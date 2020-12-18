@@ -1,0 +1,157 @@
+.container {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 20px;
+  max-width: 75vw;
+  /* background-color: #555555; */
+  display: inline-block;
+  font-weight: 10pt;
+  justify-self: center;
+}
+
+.close {
+  display: block;
+  position: relative;
+  top: 12px;
+  left: -97%;
+  background-color: #555;
+  border: #555 solid;
+  color: #ddd;
+  font-size: 95%;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  opacity: 1;
+  text-shadow: none;
+  font-weight: 10pt;
+}
+
+.subcontainer {
+  width: 100%;
+  display: flex;
+  background-color: rgb(24, 199, 181);
+  border-radius: 4px;
+  box-shadow: 0 30px 80px 10px rgba(0, 0, 0, 0.2);
+  align-items: stretch;
+  overflow: hidden;
+  font-size: 20px;
+}
+
+.trip__hero {
+  margin: 2%;
+  width: 45%;
+}
+
+.img {
+  background-color: #fff;
+  display: block;
+  width: 100%;
+}
+
+.trip__content {
+  flex: 1;
+  align-items: center;
+  background: white;
+  padding: 2% 2%;
+  margin: 2% 2% 2% 0%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 100%;
+}
+
+.description {
+  font-size: 70%;
+  flex: 1;
+}
+
+.trip__dates {
+  font-size: 80%;
+  align-items: center;
+  justify-content: end;
+}
+
+/* @import url("https://fonts.googleapis.com/css?family=Roboto");
+/*
+Green: #67b26f
+Blue: #4ca2cd
+Mid: #5aaa9d
+*/
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.content {
+  color: #444;
+  font-family: Roboto;
+  height: 100vh;
+}
+
+.trip {
+  background-color: #957;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px 10px rgba(0, 0, 0, 0.2);
+
+  align-items: stretch;
+}
+
+.trip__hero {
+  flex: 0 1 45%;
+}
+
+.pizza__img {
+  width: 100%;
+  display: block;
+}
+
+.trip__content {
+  flex: 1;
+  background: white;
+  padding: 35px 30px;
+
+  display: flex;
+  flex-direction: column;
+} */
+/*
+.trip__title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  margin-right: auto;
+}
+
+.trip__description {
+  font-size: 14px;
+}
+
+.trip__dates {
+  display: flex;
+  margin-top: auto;
+} */
+
+/* .pizza__detail {
+  font-size: 15px;
+  text-transform: uppercase;
+  margin-right: 20px;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+}
+
+.emoji {
+  font-size: 20px;
+  margin-right: 3px;
+} */

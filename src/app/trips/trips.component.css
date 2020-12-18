@@ -1,0 +1,38 @@
+img {
+  height: 100px;
+  width: auto;
+}
+
+.btn-primary {
+  background-color: rgb(24, 199, 181);
+  color: black;
+  border: none;
+}
+
+.add__trip_form {
+  background-color: rgb(24, 199, 181);
+  padding: 2%;
+  border-radius: 4px;
+  box-shadow: 0 30px 80px 10px rgba(0, 0, 0, 0.2);
+}
+
+form .btn-primary {
+  background-color: rgb(255, 255, 255);
+  color: rgb(24, 199, 181);
+}
+
+.trips__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add__trip_btn {
+  border-radius: 100%;
+  font-size: 200%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 300%;
+  padding: 0px;
+}

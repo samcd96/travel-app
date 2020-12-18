@@ -17,13 +17,13 @@ export class LoggingInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap(
         (response) => {
-          console.log('Oh boy we got an answer');
-          console.log(request);
+          // console.log('Oh boy we got an answer');
+          // console.log(request);
         },
 
         (error) => {
-          console.log('Something might be burning back there');
-          console.log(request);
+          // console.log('Something might be burning back there');
+          // console.log(request);
         }
       )
     );

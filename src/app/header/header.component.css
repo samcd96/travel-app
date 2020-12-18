@@ -1,0 +1,29 @@
+.header__container {
+  width: 100vw;
+  height: 100px;
+  background-color: #555;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.425);
+  /* justify-content: center; */
+}
+
+.btn-primary {
+  background-color: rgb(24, 199, 181);
+  color: black;
+  border: solid #666 1pt;
+}
+
+.btn-big {
+  font-size: 200%;
+  padding: 10px 30px;
+}
+
+.all__trips {
+  flex: 1;
+}
+
+.sign__out {
+  justify-self: flex-end;
+}

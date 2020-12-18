@@ -1,0 +1,57 @@
+.auth {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(https://trips-bucket-sdlkhfwijdn12-dev.s3.eu-west-2.amazonaws.com/stock-images/auth-image.jpg);
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}
+.auth__container {
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 100px 20px 20px 20px;
+  max-width: 800px;
+  font-size: 20px;
+  box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.425);
+  color: rgba(255, 255, 255, 0.836);
+  height: fit-content;
+  background-color: rgba(255, 255, 255, 0.075);
+  border-radius: 5px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__container h1 {
+  align-self: center;
+  justify-self: center;
+  padding-bottom: 10px;
+}
+
+.form__input {
+  margin-top: 3%;
+}
+
+.buttons {
+  margin-top: 5%;
+  display: flex;
+}
+
+.my_button {
+  background-color: rgb(207, 207, 207);
+}
+
+.buttons a {
+  margin-left: 20px;
+  font-size: 80%;
+  justify-self: center;
+  align-self: center;
+}
+
+.error__message {
+  font-size: 60%;
+  justify-self: flex-end;
+  align-self: center;
+  margin-left: 10%;
+}

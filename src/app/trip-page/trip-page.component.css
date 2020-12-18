@@ -1,0 +1,117 @@
+.container {
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 20px;
+  max-width: 800px;
+  font-size: 20px;
+}
+
+/* Cover */
+
+.trip__heading {
+  overflow: hidden;
+  align-items: stretch;
+  box-shadow: 0 30px 80px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background-color: #957;
+  padding: 2%;
+}
+
+.title_and_button {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1%;
+}
+
+.trip__title {
+  font-size: 200%;
+  flex: 1;
+}
+.trip__dates {
+  font-size: 75%;
+}
+
+.cover__image {
+  background-color: #fff;
+  display: block;
+  width: 100%;
+}
+
+/* Editing Cover */
+
+.__form {
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+}
+
+.trip__name {
+  display: flex;
+}
+
+.trip__name label {
+  flex: 0 0 25%;
+}
+
+.dates {
+  padding: 1% 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dates label {
+  flex: 0 1 25%;
+}
+
+.start__date,
+.end__date {
+  flex: 1;
+}
+
+.dates .dash {
+  flex: 0 0 10%;
+  align-items: center;
+  justify-content: center;
+}
+
+.image__processing {
+  display: flex;
+  padding: 2% 1%;
+}
+
+.image__processing label {
+  flex: 0 0 25%;
+}
+
+.image__preview {
+  align-self: center;
+  padding-bottom: 2%;
+}
+.image__preview img {
+  width: 100%;
+  background-color: #fff;
+}
+.buttons {
+  display: flex;
+}
+.buttons button {
+  margin: 1%;
+}
+
+.images {
+  background-color: #157;
+  display: flex;
+  align-items: stretch;
+  border-radius: 4px;
+}
+
+.image__container {
+  flex: 0 0 33%;
+  background-color: #555;
+  display: block;
+  /* padding: 1% 1% 0 0; */
+  background-color: #957;
+  border-radius: 4px;
+  box-shadow: 0 30px 80px 10px rgba(0, 0, 0, 0.2);
+}

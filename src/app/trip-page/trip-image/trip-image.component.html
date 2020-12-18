@@ -1,0 +1,38 @@
+<div class="close" (click)="onDeleteImage(image.image)" style="cursor: pointer;">
+  <a>x</a>
+</div>
+<a href="{{image.image}}">
+  <img src="{{image.image}}" alt="" class="image">
+</a>
+<div class="caption__container">
+  <form
+    #editCaptionForm="ngForm" 
+    (ngSubmit)="onSubmitCaption(editCaptionForm)"
+    *ngIf="editCaptionMode"
+    class="__form">
+    <div class="caption__input">
+      <input 
+        type="text"
+        id="caption"
+        class="form-control"
+        [ngModel]="image.caption"
+        name="caption"
+      >
+    </div>
+    <div class="buttons">
+      <button 
+        class="btn btn-primary" 
+        type="submit" 
+        [disabled]="!editCaptionForm.valid">
+          Update
+      </button>
+      <button 
+        class="btn btn-danger" 
+        type="button"
+        (click)="onCancelEditCaption()">
+          Cancel
+      </button>
+    </div>
+  </form>
+  <p class="caption" (click)="onClickCaption()" *ngIf="!editCaptionMode">{{image.caption}}</p>
+</div>

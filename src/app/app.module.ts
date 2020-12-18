@@ -11,10 +11,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TripsComponent } from './trips/trips.component';
 import * as fromApp from './store/app.reducer';
-import { TripsEffects } from './trips/store/trips.effects';
+import { TripsEffects } from './shared/trips-store/trips.effects';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggingInterceptor } from './shared/logging.interceptor';
 import { environment } from 'src/environments/environment';
+import { TripCardComponent } from './trips/trip-card/trip-card.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthComponent } from './auth/auth.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { TripPageComponent } from './trip-page/trip-page.component';
+import { HeaderComponent } from './header/header.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { TripImageComponent } from './trip-page/trip-image/trip-image.component';
 
 Amplify.configure(awsconfigure);
 
@@ -25,15 +35,28 @@ const LOGGING_INTERCEPTOR_PROVIDER: ClassProvider = {
 };
 
 @NgModule({
-  declarations: [AppComponent, TripsComponent],
+  declarations: [
+    AppComponent,
+    TripsComponent,
+    TripCardComponent,
+    AuthComponent,
+    TripPageComponent,
+    HeaderComponent,
+    LoadingSpinnerComponent,
+    TripImageComponent,
+  ],
   imports: [
+    MatProgressSpinnerModule,
     HttpClientModule,
+    FormsModule,
     AmplifyUIAngularModule,
     AppRoutingModule,
     BrowserModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([TripsEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    CommonModule,
+    FlexLayoutModule,
   ],
   providers: [LOGGING_INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],

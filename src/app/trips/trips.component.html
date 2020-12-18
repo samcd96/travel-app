@@ -1,3 +1,91 @@
-<div *ngFor="let trip of trips">
-  <h1>{{trip.tripName}}</h1>
+<div *ngIf="user" class="trips__container">
+  <div *ngFor="let trip of trips">
+    <app-trip-card 
+    [trip]="trip"
+    (deletingTripId)="onDeleteTrip($event)">
+    </app-trip-card>
+  </div>
+  <div *ngIf="loading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div 
+    *ngIf="!addTripMode" 
+    (click)="onAddTrip()"
+    >
+    <i class="btn btn-primary add__trip_btn">+</i>
+  </div>
+  <form 
+    #addTripForm="ngForm" 
+    (ngSubmit)="onSubmitAddTrip(addTripForm)"
+    *ngIf="addTripMode"
+    class="add__trip_form">
+    <label for="tripName">Trip Name</label>
+      <input 
+        type="text"
+        id="tripName"
+        class="form-control"
+        ngModel
+        name="tripName"
+        required
+      >
+    <label for="tripStart">Start Date</label>
+      <input 
+        type="date"
+        id="tripStart"
+        class="form-control"
+        ngModel
+        name="tripStart"
+        required
+      >
+    <label for="tripEnd">End Date</label>
+      <input 
+        type="date"
+        id="tripEnd"
+        class="form-control"
+        ngModel
+        name="tripEnd"
+        required
+      >
+    <label for="description">Desciption</label>
+      <input 
+        type="text"
+        id="description"
+        class="form-control"
+        ngModel
+        name="description"
+      >
+    <label for="coverImage">Cover Image</label>
+      <div class="custom-file fileInputProfileWrap">
+        <input 
+          type="file"
+          (change)="fileChangeEvent($event)"
+          id="coverImage"
+          accept="image/*"
+          class="fileInputProfile"
+          name="coverImage"
+        >
+        <ng-container *ngIf="isImageSaved; else elseTemplate">
+          <img [src]="cardImageBase64" />
+        </ng-container>
+        <ng-template #elseTemplate>
+  
+            <img src="../../assets/defaultCoverImage.png" class="img-responsive">
+        </ng-template>
+      </div>
+    <div>
+      <button 
+        class="btn btn-primary" 
+        type="submit" 
+        [disabled]="!addTripForm.valid || !isImageSaved">
+          Add
+      </button>
+      <button 
+        class="btn btn-danger" 
+        type="button"
+        (click)="onCancelAddTrip()">
+          Cancel
+      </button>
+    </div>
+  </form>
 </div>
+

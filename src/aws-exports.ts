@@ -4,8 +4,8 @@
 const awsmobile = {
   aws_project_region: 'eu-west-2',
   aws_cognito_region: 'eu-west-2',
-  aws_user_pools_id: 'eu-west-2_e1wu3D067',
-  aws_user_pools_web_client_id: '28mmdb4pu0bb5p6tgvun6utfv5',
+  aws_user_pools_id: 'eu-west-2_fpH3cOgED',
+  aws_user_pools_web_client_id: '197gmms54dmskurhnh8l2q7qta',
   oauth: {},
 };
 

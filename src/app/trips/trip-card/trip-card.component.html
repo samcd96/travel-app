@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="close" (click)="onDeleteTrip()" style="cursor: pointer;">
+    <a>x</a>
+  </div>
+  <div class="subcontainer" (click)="onSelect()">
+    <div class="trip__hero">
+      <img class="img" src="{{trip.coverImage}}" alt="">
+    </div>
+    <div class="trip__content">
+      <h1 class="title">{{trip.tripName}}</h1>
+      <p class="description">{{trip.description}}</p>
+      <h3 class="trip__dates">{{trip.tripStart}} - {{trip.tripEnd}}</h3>
+    </div>
+  </div>
+</div>
