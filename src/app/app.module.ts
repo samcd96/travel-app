@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ClassProvider, NgModule } from '@angular/core';
+import { ClassProvider, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import Amplify from 'aws-amplify';
 import awsconfigure from '../aws-exports';
@@ -25,6 +25,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { TripImageComponent } from './trip-page/trip-image/trip-image.component';
+import { MatIconModule } from '@angular/material/icon';
 
 Amplify.configure(awsconfigure);
 
@@ -46,6 +47,7 @@ const LOGGING_INTERCEPTOR_PROVIDER: ClassProvider = {
     TripImageComponent,
   ],
   imports: [
+    MatIconModule,
     MatProgressSpinnerModule,
     HttpClientModule,
     FormsModule,
@@ -60,5 +62,6 @@ const LOGGING_INTERCEPTOR_PROVIDER: ClassProvider = {
   ],
   providers: [LOGGING_INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

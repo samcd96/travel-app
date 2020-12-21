@@ -15,17 +15,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-trips',
   templateUrl: './trips.component.html',
-  styleUrls: ['./trips.component.css'],
+  styleUrls: ['./trips.component.css', '../shared/styles/forms.css'],
 })
 export class TripsComponent implements OnInit, OnDestroy {
   public jwt: string;
   public trips: Trip[];
   public tripsSub: Subscription;
   public addTripMode = false;
-  public isImageSaved = true;
+  public isImageSaved = false;
   public cardImageBase64: string;
   public user: any;
   public loading = false;
+  public error = null;
 
   constructor(public store: Store<fromApp.AppState>, public router: Router) {}
 
@@ -90,9 +91,15 @@ export class TripsComponent implements OnInit, OnDestroy {
         const image = new Image();
         image.src = e.target.result;
         image.onload = (rs) => {
+          if (image.height > image.width || image.width > 2 * image.height) {
+            this.error = 'Inputted cover image is invalid';
+            return;
+          }
+          console.log(image.height, image.width);
           const imgBase64Path = e.target.result;
           this.cardImageBase64 = imgBase64Path;
           this.isImageSaved = true;
+          this.error = null;
         };
       };
 

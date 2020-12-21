@@ -1,19 +1,12 @@
-.container {
+.trip-card__container {
+  font-size: 20px;
   box-sizing: border-box;
-  padding: 0;
-  margin: 20px;
-  max-width: 75vw;
-  /* background-color: #555555; */
-  display: inline-block;
-  font-weight: 10pt;
-  justify-self: center;
+  position: relative;
 }
 
 .close {
   display: block;
-  position: relative;
-  top: 12px;
-  left: -97%;
+  object-position: left top;
   background-color: #555;
   border: #555 solid;
   color: #ddd;
@@ -25,22 +18,20 @@
   opacity: 1;
   text-shadow: none;
   font-weight: 10pt;
+  position: absolute;
 }
 
 .subcontainer {
-  width: 100%;
   display: flex;
   background-color: rgb(24, 199, 181);
   border-radius: 4px;
   box-shadow: 0 30px 80px 10px rgba(0, 0, 0, 0.2);
   align-items: stretch;
-  overflow: hidden;
-  font-size: 20px;
 }
 
 .trip__hero {
-  margin: 2%;
-  width: 45%;
+  margin: 2% 0.5% 2% 2%;
+  width: 55%;
 }
 
 .img {

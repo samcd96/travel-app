@@ -12,6 +12,7 @@ import * as TripsActions from '../../shared/trips-store/trips.actions';
 export class TripCardComponent implements OnInit {
   @Input() trip: Trip;
   @Output() deletingTripId = new EventEmitter<String>();
+  public hovering = false;
 
   constructor(public store: Store<fromApp.AppState>, private router: Router) {}
 
@@ -21,6 +22,14 @@ export class TripCardComponent implements OnInit {
 
   onDeleteTrip() {
     this.deletingTripId.emit(this.trip.id);
+  }
+
+  onMouseEnter() {
+    this.hovering = true;
+  }
+
+  onMouseLeave() {
+    this.hovering = false;
   }
 
   ngOnInit(): void {}

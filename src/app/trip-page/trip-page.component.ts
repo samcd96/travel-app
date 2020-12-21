@@ -12,7 +12,7 @@ import { ImageRequestBody } from '../shared/models/imageRequestBody.model';
 @Component({
   selector: 'app-trip-page',
   templateUrl: './trip-page.component.html',
-  styleUrls: ['./trip-page.component.css'],
+  styleUrls: ['./trip-page.component.css', '../shared/styles/forms.css'],
 })
 export class TripPageComponent implements OnInit {
   public tripSub: Subscription;
