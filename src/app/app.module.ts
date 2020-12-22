@@ -26,6 +26,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { TripImageComponent } from './trip-page/trip-image/trip-image.component';
 import { MatIconModule } from '@angular/material/icon';
+import { AddEditFormComponent } from './shared/add-edit-form/add-edit-form.component';
 
 Amplify.configure(awsconfigure);
 
@@ -45,6 +46,7 @@ const LOGGING_INTERCEPTOR_PROVIDER: ClassProvider = {
     HeaderComponent,
     LoadingSpinnerComponent,
     TripImageComponent,
+    AddEditFormComponent,
   ],
   imports: [
     MatIconModule,

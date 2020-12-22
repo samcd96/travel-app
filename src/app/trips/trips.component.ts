@@ -60,51 +60,15 @@ export class TripsComponent implements OnInit, OnDestroy {
     this.addTripMode = true;
   }
 
-  onSubmitAddTrip(form: NgForm) {
-    const newTripRequestBody: TripRequestBody = {
-      tripName: form.value.tripName,
-      tripStart: form.value.tripStart,
-      tripEnd: form.value.tripEnd,
-      description: form.value.description,
-    };
-    if (this.cardImageBase64) {
-      newTripRequestBody.coverImage = this.cardImageBase64;
+  onSubmit(results: TripRequestBody | null) {
+    if (results) {
+      this.store.dispatch(new TripsActions.AddTrip(results));
     }
-    this.addTripMode = false;
-
-    this.store.dispatch(new TripsActions.AddTrip(newTripRequestBody));
-  }
-
-  onCancelAddTrip() {
     this.addTripMode = false;
   }
 
   ngOnDestroy() {
     this.tripsSub.unsubscribe();
-  }
-
-  fileChangeEvent(fileInput: any) {
-    this.isImageSaved = false;
-    if (fileInput.target.files && fileInput.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        const image = new Image();
-        image.src = e.target.result;
-        image.onload = (rs) => {
-          if (image.height > image.width || image.width > 2 * image.height) {
-            this.error = 'Inputted cover image is invalid';
-            return;
-          }
-          console.log(image.height, image.width);
-          const imgBase64Path = e.target.result;
-          this.cardImageBase64 = imgBase64Path;
-          this.isImageSaved = true;
-          this.error = null;
-        };
-      };
-
-      reader.readAsDataURL(fileInput.target.files[0]);
-    }
   }
 
   onDeleteTrip(deletingTripId: string) {

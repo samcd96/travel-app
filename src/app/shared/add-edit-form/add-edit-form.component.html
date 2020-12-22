@@ -1,0 +1,132 @@
+<form 
+  #addTripForm="ngForm"
+  (ngSubmit)="onSubmitAddTrip(addTripForm)"
+  class="__form">
+  <div class="trip__name">
+    <label for="tripName">Trip Name:</label>
+    <input
+      *ngIf="!trip" 
+      type="text"
+      id="tripName"
+      class="form-control"
+      ngModel
+      name="tripName"
+      required
+    >
+    <input
+      *ngIf="trip" 
+      type="text"
+      id="tripName"
+      class="form-control"
+      [ngModel]="trip.tripName"
+      name="tripName"
+      required
+  >
+  </div>
+  <div class="dates">
+    <label>Dates:</label>
+    <input
+      *ngIf="!trip" 
+      type="date"
+      id="tripStart"
+      class="form-control start__date"
+      ngModel
+      name="tripStart"
+      required
+    >
+    <input
+      *ngIf="trip" 
+      type="date"
+      id="tripStart"
+      class="form-control start__date"
+      [ngModel]="trip.tripStart"
+      name="tripStart"
+      required
+    >
+    <div class="dash">
+      <h3> - </h3>
+    </div>
+    <input *ngIf="!trip" 
+      type="date"
+      id="tripEnd"
+      class="form-control end__date"
+      ngModel
+      name="tripEnd"
+      required
+    >
+    <input *ngIf="trip" 
+      type="date"
+      id="tripEnd"
+      class="form-control end__date"
+      [ngModel]="trip.tripEnd"
+      name="tripEnd"
+      required
+    >
+  </div>
+  <div class="desciption__input">
+    <label for="description">Desciption:</label>
+    <textarea 
+      *ngIf=!trip
+      type="text"
+      id="description"
+      class="form-control"
+      ngModel
+      name="description"
+    ></textarea>
+    <textarea 
+      *ngIf=trip
+      type="text"
+      id="description"
+      class="form-control"
+      [ngModel]="trip.description"
+      name="description"
+    ></textarea>
+  </div>
+  <div class="image_and_buttons">
+    <div class="column_1">
+      <div class="input-file-wrap">
+        <label class="image-label">Cover Image:</label>
+        <div class="input-file-button">
+          <label class="btn btn-primary" for="coverImage">Change file</label>
+        </div>
+        <input 
+          type="file"
+          (change)="fileChangeEvent($event)"
+          id="coverImage"
+          accept="image/*"
+          name="coverImage"
+          class="inputfile"
+        >
+      </div>
+      <div class="cover_image_error">
+        <p *ngIf="error">{{error}}</p>
+      </div>
+      <div class="buttons">
+        <button 
+          class="btn btn-primary" 
+          type="submit" 
+          [disabled]="!addTripForm.valid">
+            Add
+        </button>
+        <button 
+          class="btn btn-danger" 
+          type="button"
+          (click)="onCancelAddTrip()">
+            Cancel
+        </button>
+      </div>        
+    </div>
+    <div class="column_2">
+      <div *ngIf="isImageSaved">
+        <img [src]="cardImageBase64" />
+      </div>
+      <div *ngIf="!isImageSaved && !trip">
+        <img src="https://trips-bucket-sdlkhfwijdn12-dev.s3.eu-west-2.amazonaws.com/defaultCoverImage.png">
+      </div>
+      <div *ngIf="!isImageSaved && trip">
+        <img src="trip.coverImage">
+      </div>
+    </div>
+
+  </div>
+</form>

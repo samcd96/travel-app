@@ -67,6 +67,12 @@ export function tripReducer(
         errorMessage: null,
         processing: false,
       };
+    case TripsActions.DELETE_TRIP:
+      console.log(action.payload);
+      return {
+        ...state,
+        processing: true,
+      };
     case TripsActions.SET_DELETE_TRIP:
       console.log(action.payload);
       return {
@@ -76,6 +82,7 @@ export function tripReducer(
         }),
         selectedTrip: null,
         errorMessage: null,
+        processing: false,
       };
     case TripsActions.ERROR:
       return {
