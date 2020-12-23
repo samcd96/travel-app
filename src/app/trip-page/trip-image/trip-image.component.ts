@@ -14,6 +14,7 @@ export class TripImageComponent implements OnInit {
     caption: string;
   }>();
   public editCaptionMode = false;
+  public hovering: boolean;
   constructor() {}
 
   ngOnInit(): void {}
@@ -38,5 +39,13 @@ export class TripImageComponent implements OnInit {
 
   onCancelEditCaption() {
     this.editCaptionMode = false;
+  }
+
+  onMouseEnter() {
+    this.hovering = true;
+  }
+
+  onMouseLeave() {
+    this.hovering = false;
   }
 }

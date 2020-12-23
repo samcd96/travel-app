@@ -12,7 +12,7 @@ import { ImageRequestBody } from '../shared/models/imageRequestBody.model';
 @Component({
   selector: 'app-trip-page',
   templateUrl: './trip-page.component.html',
-  styleUrls: ['./trip-page.component.css'],
+  styleUrls: ['./trip-page.component.css', '../shared/styles/common-forms.css'],
 })
 export class TripPageComponent implements OnInit {
   public tripSub: Subscription;
@@ -24,6 +24,7 @@ export class TripPageComponent implements OnInit {
   public coverImageBase64: string;
   public imageBase64: string;
   public loading = false;
+  public hovering: boolean;
 
   constructor(public store: Store<fromApp.AppState>, private router: Router) {}
 
@@ -75,6 +76,7 @@ export class TripPageComponent implements OnInit {
       })
     );
     this.addImageMode = false;
+    this.imageBase64 = null;
   }
 
   deleteImage(image: string) {
@@ -93,5 +95,32 @@ export class TripPageComponent implements OnInit {
         body: { editCaption: image },
       })
     );
+  }
+
+  onMouseEnter() {
+    this.hovering = true;
+  }
+
+  onMouseLeave() {
+    this.hovering = false;
+  }
+
+  fileChangeEvent(fileInput: any) {
+    this.isImageSaved = false;
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = (rs) => {
+          console.log(image.height, image.width);
+          const imgBase64Path = e.target.result;
+          this.imageBase64 = imgBase64Path;
+          this.isImageSaved = true;
+        };
+      };
+
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
   }
 }

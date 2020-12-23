@@ -1,0 +1,92 @@
+.wrapper
+
+<!-- <div class="wrapper" *ngIf="trip">
+  <div class="cover" *ngIf="!editCoverMode" >
+    <div class="title_and_button">
+      <h1 class="trip__title">{{trip.tripName}}</h1>
+      <button class="btn btn-primary" (click)="onEditCover()" [disabled]="loading">Edit Cover</button>
+    </div>
+    <h3 class="trip__dates">{{trip.tripStart}} - {{trip.tripEnd}}</h3>
+    <div class="cover__image">
+      <img src="{{trip.coverImage}}" alt="{{trip.tripName}}">
+    </div>
+    <p class="description">{{trip.description}}</p>
+  </div>
+  <div class="trip__content">
+    <div class="trip__images">
+    </div>
+  </div>
+
+  <app-add-edit-form *ngIf="editCoverMode" (results)="onSubmitEditCover($event)" [trip]="trip"></app-add-edit-form>
+
+  <div *ngIf="loading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <button class="btn btn-primary" (click)="addImage()" [disabled]="loading">Add Image</button>
+
+  <form 
+    #addImageForm="ngForm" 
+    (ngSubmit)="onSubmitAddImage(addImageForm)"
+    *ngIf="addImageMode"
+    class="__form">
+    <div class="image__processing">
+      <label for="image">Image</label>
+      <div class="custom-file fileInputProfileWrap">
+        <input 
+          type="file"
+          (change)="changeImageEvent($event, false)"
+          id="image"
+          accept="image/*"
+          class="fileInputProfile"
+          name="image"
+          required
+        >
+      </div>
+    </div>
+    <div class="image__preview">
+      <ng-container *ngIf="newImage;">
+        <img [src]="imageBase64" />
+      </ng-container>
+    </div>
+    <div class="image__caption">
+      <label for="caption">Trip Name:</label>
+      <input 
+        type="text"
+        id="caption"
+        class="form-control"
+        ngModel
+        name="caption"
+      >
+    </div>
+    <div class="buttons">
+      <button 
+        class="btn btn-primary" 
+        type="submit" 
+        [disabled]="!newImage">
+          Done
+      </button>
+      <button 
+        class="btn btn-danger" 
+        type="button"
+        (click)="onCancelAddImage()">
+          Cancel
+      </button>
+    </div>
+  </form> -->
+
+  <div class="images" *ngIf="trip">
+    <div class="image__container"*ngFor="let image of trip.images; let i=index">
+      <app-trip-image [image]="image" (deletingImage)="deleteImage($event)" (updateCaption)="changeCaption($event)"></app-trip-image>
+      <!-- <div class="close" (click)="onDeleteImage(image.image)" style="cursor: pointer;">
+        <a>x</a>
+      </div>
+      <a href="{{image.image}}">
+        <img src="{{image.image}}" alt="image {{i}}" class="image">
+      </a>
+
+      <p class="caption" (click)="onClickCaption(image.image)">{{image.caption}}</p> -->
+    </div>
+  </div>
+</div>
+
+<!-- Create an orgainisation algorithm for the images -->

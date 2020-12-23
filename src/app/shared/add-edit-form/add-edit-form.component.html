@@ -2,6 +2,12 @@
   #addTripForm="ngForm"
   (ngSubmit)="onSubmitAddEditTrip(addTripForm)"
   class="__form">
+
+  <div class="form__heading">
+    <h1 *ngIf="trip">Edit trip: '{{trip.tripName}}'</h1>
+    <h1 *ngIf="!trip">Add a new trip</h1>
+  </div>
+
   <div class="trip__name">
     <label for="tripName">Trip Name:</label>
     <input
@@ -106,7 +112,7 @@
           class="btn btn-primary" 
           type="submit" 
           [disabled]="!addTripForm.valid">
-            Add
+            {{trip? 'Update': 'Add'}}
         </button>
         <button 
           class="btn btn-danger" 

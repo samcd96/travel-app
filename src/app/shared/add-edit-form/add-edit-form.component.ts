@@ -6,7 +6,7 @@ import { Trip } from '../models/trips.model';
 @Component({
   selector: 'app-add-edit-form',
   templateUrl: './add-edit-form.component.html',
-  styleUrls: ['./add-edit-form.component.css'],
+  styleUrls: ['./add-edit-form.component.css', '../styles/common-forms.css'],
 })
 export class AddEditFormComponent implements OnInit {
   public cardImageBase64 = null;

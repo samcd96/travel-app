@@ -1,90 +1,120 @@
-<div class="wrapper" *ngIf="trip">
-  <div class="cover" *ngIf="!editCoverMode">
-    <div class="title_and_button">
+<div class="wrapper" *ngIf=trip>
+  
+  <!-- Cover -->
+  <div class="cover" *ngIf =!editCoverMode (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+    <img class="cover__image" src="{{trip.coverImage}}" alt="">
+    <div class="cover__text">
       <h1 class="trip__title">{{trip.tripName}}</h1>
-      <button class="btn btn-primary" (click)="onEditCover()" [disabled]="loading">Edit Cover</button>
-    </div>
-    <h3 class="trip__dates">{{trip.tripStart}} - {{trip.tripEnd}}</h3>
-    <div class="cover__image">
-      <img src="{{trip.coverImage}}" alt="{{trip.tripName}}">
-    </div>
-    <p class="description">{{trip.description}}</p>
-  </div>
-  <div class="trip__content">
-    <div class="trip__images">
+      <h3 class="trip__dates">{{trip.tripStart | date: 'd MMM y'}} - {{trip.tripEnd | date: 'd MMM y'}}</h3>
+      <div class="description">
+        <p>{{trip.description}}</p>
+      </div>
+      <div class="edit__cover_btn_wrapper">
+        <mat-icon *ngIf="hovering" class="btn btn-primary edit__trip_btn" (click)="onEditCover()" style="cursor: pointer;">create</mat-icon>
+      </div>
     </div>
   </div>
 
-  <app-add-edit-form *ngIf="editCoverMode" (results)="onSubmitEditCover($event)" [trip]="trip"></app-add-edit-form>
+  <!-- Edit cover form -->
+  <div class="edit__cover" *ngIf="editCoverMode">
+    <app-add-edit-form (results)="onSubmitEditCover($event)" [trip]="trip"></app-add-edit-form>
+  </div>
 
+  <!-- Loading spinner -->
   <div *ngIf="loading">
     <app-loading-spinner></app-loading-spinner>
   </div>
-  <button class="btn btn-primary" (click)="addImage()" [disabled]="loading">Add Image</button>
 
-  <form 
-    #addImageForm="ngForm" 
-    (ngSubmit)="onSubmitAddImage(addImageForm)"
-    *ngIf="addImageMode"
-    class="__form">
-    <div class="image__processing">
-      <label for="image">Image</label>
-      <div class="custom-file fileInputProfileWrap">
-        <input 
-          type="file"
-          (change)="changeImageEvent($event, false)"
-          id="image"
-          accept="image/*"
-          class="fileInputProfile"
-          name="image"
-          required
-        >
-      </div>
-    </div>
-    <div class="image__preview">
-      <ng-container *ngIf="newImage;">
-        <img [src]="imageBase64" />
-      </ng-container>
-    </div>
-    <div class="image__caption">
-      <label for="caption">Trip Name:</label>
-      <input 
-        type="text"
-        id="caption"
-        class="form-control"
-        ngModel
-        name="caption"
-      >
-    </div>
-    <div class="buttons">
-      <button 
-        class="btn btn-primary" 
-        type="submit" 
-        [disabled]="!newImage">
-          Done
-      </button>
-      <button 
-        class="btn btn-danger" 
-        type="button"
-        (click)="onCancelAddImage()">
-          Cancel
-      </button>
-    </div>
-  </form>
-
+  <!-- Images -->
   <div class="images" *ngIf="trip">
-    <div class="image__container"*ngFor="let image of trip.images; let i=index">
-      <app-trip-image [image]="image" (deletingImage)="deleteImage($event)" (updateCaption)="changeCaption($event)"></app-trip-image>
-      <!-- <div class="close" (click)="onDeleteImage(image.image)" style="cursor: pointer;">
-        <a>x</a>
+    <div class="img_col">
+      <div class="image__container"*ngFor="let image of trip.images; let i=index">
+        <app-trip-image [image]="image" (deletingImage)="deleteImage($event)" (updateCaption)="changeCaption($event)" *ngIf="(i % 3)==0"></app-trip-image>
       </div>
-      <a href="{{image.image}}">
-        <img src="{{image.image}}" alt="image {{i}}" class="image">
-      </a>
-
-      <p class="caption" (click)="onClickCaption(image.image)">{{image.caption}}</p> -->
+    </div>
+    <div class="img_col">
+      <div class="image__container"*ngFor="let image of trip.images; let i=index">
+        <app-trip-image [image]="image" (deletingImage)="deleteImage($event)" (updateCaption)="changeCaption($event)" *ngIf="(i % 3)==1"></app-trip-image>
+      </div>
+    </div>
+    <div class="img_col">
+      <div class="image__container"*ngFor="let image of trip.images; let i=index">
+        <app-trip-image [image]="image" (deletingImage)="deleteImage($event)" (updateCaption)="changeCaption($event)" *ngIf="(i % 3)==2"></app-trip-image>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Create an orgainisation algorithm for the images -->
+  <!-- Add image button -->
+  <div  
+    (click)="addImage()"
+    *ngIf="!addImageMode"
+    >
+    <mat-icon class="add__img_btn" style="cursor: pointer;">add_circle</mat-icon>
+  </div>
+
+  <!-- Add image form -->
+  <div class="add__image">
+    <form 
+      #addImageForm="ngForm"
+      (ngSubmit)="onSubmitAddImage(addImageForm)"
+      class="__form"
+      *ngIf="addImageMode">
+  
+      <div class="form__heading">
+        <h1>Add image to '{{trip.tripName}}'</h1>
+      </div>
+      <div class="image__caption">
+        <label for="caption">Caption</label>
+        <input 
+          type="text"
+          id="caption"
+          class="form-control"
+          ngModel
+          name="caption"
+        >
+      </div>
+      <div class="image_and_buttons">
+        <div class="column_1">
+          <div class="input-file-wrap">
+            <label class="image-label">Cover Image:</label>
+            <div class="input-file-button">
+              <label class="btn btn-primary" for="coverImage">Change file</label>
+            </div>
+            <input 
+              type="file"
+              (change)="fileChangeEvent($event)"
+              id="coverImage"
+              accept="image/*"
+              name="coverImage"
+              class="inputfile"
+              required
+            >
+          </div>
+          <div class="cover_image_error">
+            <p *ngIf="error">{{error}}</p>
+          </div>
+          <div class="buttons">
+            <button 
+              class="btn btn-primary" 
+              type="submit" 
+              [disabled]="!isImageSaved">
+                Add
+            </button>
+            <button 
+              class="btn btn-danger" 
+              type="button"
+              (click)="onCancelAddImage()">
+                Cancel
+            </button>
+          </div>        
+        </div>
+        <div class="column_2">
+          <div *ngIf="isImageSaved">
+            <img [src]="imageBase64" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

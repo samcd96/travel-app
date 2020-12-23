@@ -9,7 +9,7 @@
     <div class="trip__content">
       <h1 class="title">{{trip.tripName}}</h1>
       <p class="description">{{trip.description}}</p>
-      <h3 class="trip__dates">{{trip.tripStart}} - {{trip.tripEnd}}</h3>
+      <h3 class="trip__dates">{{trip.tripStart | date: 'd MMM y'}} - {{trip.tripEnd | date: 'd MMM y'}}</h3>
     </div>
   </div>
 </div>
