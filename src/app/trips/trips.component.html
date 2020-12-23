@@ -16,7 +16,9 @@
       <mat-icon class="add__trip_btn" style="cursor: pointer;">add_circle</mat-icon>
     </div>
     <!-- Add trip form -->
-    <app-add-edit-form *ngIf="addTripMode" (results)="onSubmit($event)"></app-add-edit-form>
+    <div class="form_container">
+      <app-add-edit-form *ngIf="addTripMode" (results)="onSubmit($event)"></app-add-edit-form>
+    </div>
   </div>
 </div>
 

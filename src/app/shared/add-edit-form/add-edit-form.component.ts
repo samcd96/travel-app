@@ -18,14 +18,9 @@ export class AddEditFormComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    // if (!this.trip) {
-    //   this.trip.tripName = '';
-    //   this.trip.description = '';
-    // }
-  }
+  ngOnInit(): void {}
 
-  onSubmitAddTrip(form: NgForm) {
+  onSubmitAddEditTrip(form: NgForm) {
     const result: TripRequestBody = {
       tripName: form.value.tripName,
       tripStart: form.value.tripStart,

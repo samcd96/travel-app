@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-trips',
   templateUrl: './trips.component.html',
-  styleUrls: ['./trips.component.css', '../shared/styles/forms.css'],
+  styleUrls: ['./trips.component.css'],
 })
 export class TripsComponent implements OnInit, OnDestroy {
   public jwt: string;

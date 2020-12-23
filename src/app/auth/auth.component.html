@@ -1,8 +1,9 @@
 <div class="auth">
   <div class="auth__container">
     <form 
+      *ngIf="authenticate"
       #signInForm="ngForm" 
-      (ngSubmit)="onSubmit(signInForm)"
+      (ngSubmit)="onSubmitSignLogIn(signInForm)"
       class="__form">
       <h1>{{signInMode?"Login to your account":"Sign Up"}}</h1>
       <div class="form__input">
@@ -36,14 +37,114 @@
         </button>
         <a 
           style="cursor: pointer;"
-          type="buton" 
+          type="button" 
           (click)="onChangeAuthMode()">
           {{signInMode? "Sign Up": "Login"}}
         </a>
-        <div *ngIf="error" class="error__message">
-          {{error}}
+        <div class="error__message">
+          <div *ngIf="error">
+            {{error}}
+          </div>
         </div>
+        <a 
+          style="cursor: pointer;"
+          type="button" 
+          (click)="onForgetPassword()">
+          Forgot Password?
+        </a>
       </div>
     </form>
+
+    <form 
+      *ngIf="forgotPasswordMode"
+      #forgotPasswordForm="ngForm" 
+      (ngSubmit)="onSubmitForgotPassword(forgotPasswordForm)"
+      class="__form">
+      <h1>Forgotten your password? Enter your email!</h1>
+      <div class="form__input">
+        <label for="userName">Email</label>
+        <input 
+          type="email"
+          id="userName"
+          class="form-control"
+          ngModel
+          name="userName"
+          required
+        >
+      </div>
+      <div class="buttons">
+        <button 
+          class="btn my_button" 
+          type="submit" 
+          [disabled]="!forgotPasswordForm.valid">
+          Send Email
+        </button>
+        <div class="error__message">
+          <div *ngIf="error" >
+            {{error}}
+          </div>
+        </div>
+        <a 
+          style="cursor: pointer;"
+          type="buton" 
+          (click)="onAuthenticate()">
+          Back to Login
+        </a>
+      </div>
+    
+    </form>
+    
+    <form 
+      *ngIf="changePasswordMode"
+      #changePasswordForm="ngForm" 
+      (ngSubmit)="onSubmitChangePassword(changePasswordForm)"
+      class="__form">
+      <h1>Forgotten your password? Enter your email!</h1>
+      <div class="form__input">
+        <label for="code">Code</label>
+        <input 
+          type="text"
+          id="code"
+          class="form-control"
+          ngModel
+          name="code"
+          required
+        >
+      </div>
+      <div class="form__input">
+        <label for="new_password">New Password</label>
+        <input 
+          type="password"
+          id="new_password"
+          class="form-control"
+          ngModel
+          name="new_password"
+          required
+        >
+      </div>
+      <div class="buttons">
+        <button 
+          class="btn my_button" 
+          type="submit" 
+          [disabled]="!changePasswordForm.valid">
+          Change Password
+        </button>
+        <div class="error__message">
+          <div *ngIf="error" >
+            {{error}}
+          </div>
+        </div>
+        <a 
+          style="cursor: pointer;"
+          type="button" 
+          (click)="onAuthenticate()">
+          Back to Login
+        </a>
+      </div>
+    </form>
+
+    <div class="message">
+      <p>{{message}}</p>
+    </div>
   </div>
 </div>

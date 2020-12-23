@@ -54,4 +54,5 @@
   justify-self: flex-end;
   align-self: center;
   margin-left: 10%;
+  flex: 1;
 }

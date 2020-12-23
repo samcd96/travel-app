@@ -12,7 +12,7 @@ import { ImageRequestBody } from '../shared/models/imageRequestBody.model';
 @Component({
   selector: 'app-trip-page',
   templateUrl: './trip-page.component.html',
-  styleUrls: ['./trip-page.component.css', '../shared/styles/forms.css'],
+  styleUrls: ['./trip-page.component.css'],
 })
 export class TripPageComponent implements OnInit {
   public tripSub: Subscription;
@@ -41,47 +41,15 @@ export class TripPageComponent implements OnInit {
     this.editCoverMode = true;
   }
 
-  onSubmitEditCover(coverForm: NgForm) {
-    const newTripRequestBody: TripRequestBody = {
-      tripName: coverForm.value.tripName,
-      tripStart: coverForm.value.tripStart,
-      tripEnd: coverForm.value.tripEnd,
-      description: coverForm.value.description,
-    };
-    if (this.coverImageBase64) {
-      newTripRequestBody.coverImage = this.coverImageBase64;
+  onSubmitEditCover(results: TripRequestBody | null) {
+    if (results) {
+      this.store.dispatch(
+        new TripsActions.UpdateTrip({
+          id: this.trip.id,
+          body: results,
+        })
+      );
     }
-    this.editCoverMode = false;
-    this.store.dispatch(
-      new TripsActions.UpdateTrip({
-        id: this.trip.id,
-        body: newTripRequestBody,
-      })
-    );
-  }
-
-  changeImageEvent(fileInput: any, coverImage: boolean) {
-    if (fileInput.target.files && fileInput.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        const image = new Image();
-        image.src = e.target.result;
-        image.onload = (rs) => {
-          const imgBase64Path = e.target.result;
-          if (coverImage) {
-            this.coverImageBase64 = imgBase64Path;
-            this.isImageSaved = true;
-          } else {
-            this.imageBase64 = imgBase64Path;
-            this.newImage = true;
-          }
-        };
-      };
-      reader.readAsDataURL(fileInput.target.files[0]);
-    }
-  }
-
-  onCancelEditCover() {
     this.editCoverMode = false;
   }
 

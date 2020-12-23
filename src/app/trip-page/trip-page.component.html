@@ -1,103 +1,22 @@
-<div class="container" *ngIf="trip">
+<div class="wrapper" *ngIf="trip">
   <div class="cover" *ngIf="!editCoverMode">
-    <div class="trip__heading">
-      <div class="title_and_button">
-        <h1 class="trip__title">{{trip.tripName}}</h1>
-        <button class="btn btn-primary" (click)="onEditCover()" [disabled]="loading">Edit Cover</button>
-      </div>
-      <h3 class="trip__dates">{{trip.tripStart}} - {{trip.tripEnd}}</h3>
-      <img class="cover__image" src="{{trip.coverImage}}" alt="{{trip.tripName}}">
-      <p class="description">{{trip.description}}</p>
+    <div class="title_and_button">
+      <h1 class="trip__title">{{trip.tripName}}</h1>
+      <button class="btn btn-primary" (click)="onEditCover()" [disabled]="loading">Edit Cover</button>
     </div>
-    <div class="trip__content">
-      <div class="trip__images">
-      </div>
+    <h3 class="trip__dates">{{trip.tripStart}} - {{trip.tripEnd}}</h3>
+    <div class="cover__image">
+      <img src="{{trip.coverImage}}" alt="{{trip.tripName}}">
+    </div>
+    <p class="description">{{trip.description}}</p>
+  </div>
+  <div class="trip__content">
+    <div class="trip__images">
     </div>
   </div>
-  <form 
-    #editCoverForm="ngForm" 
-    (ngSubmit)="onSubmitEditCover(editCoverForm)"
-    *ngIf="editCoverMode"
-    class="__form">
-    <div class="trip__name">
-      <label for="tripName">Trip Name:</label>
-      <input 
-        type="text"
-        id="tripName"
-        class="form-control"
-        [ngModel]="trip.tripName"
-        name="tripName"
-        required
-      >
-    </div>
-    <div class="dates">
-      <label>Dates:</label>
-      <input 
-        type="date"
-        id="tripStart"
-        class="form-control start__date"
-        [ngModel]="trip.tripStart"
-        name="tripStart"
-        required
-      >
-      <div class="dash">
-        <h3> - </h3>
-      </div>
-      <input 
-        type="date"
-        id="tripEnd"
-        class="form-control end__date"
-        [ngModel]="trip.tripEnd"
-        name="tripEnd"
-        required
-      >
-    </div>
-    <div class="desciption__input">
-      <label for="description">Desciption:</label>
-      <textarea 
-        type="text"
-        id="description"
-        class="form-control"
-        [ngModel]="trip.description"
-        name="description"
-      ></textarea>
-    </div>
-    <div class="image__processing">
-      <label for="coverImage">Cover Image</label>
-      <div class="custom-file fileInputProfileWrap">
-        <input 
-          type="file"
-          (change)="changeImageEvent($event, true)"
-          id="coverImage"
-          accept="image/*"
-          class="fileInputProfile"
-          name="coverImage"
-        >
-      </div>
-    </div>
-    <div class="image__preview">
-      <ng-container *ngIf="isImageSaved;">
-        <img [src]="coverImageBase64" />
-      </ng-container>
-      <ng-container *ngIf="!isImageSaved;">
-        <img [src]="trip.coverImage" />
-      </ng-container>
-    </div>
-    <div class="buttons">
-      <button 
-        class="btn btn-primary" 
-        type="submit" 
-        [disabled]="!editCoverForm.valid">
-          Update
-      </button>
-      <button 
-        class="btn btn-danger" 
-        type="button"
-        (click)="onCancelEditCover()">
-          Cancel
-      </button>
-    </div>
-  </form>
+
+  <app-add-edit-form *ngIf="editCoverMode" (results)="onSubmitEditCover($event)" [trip]="trip"></app-add-edit-form>
+
   <div *ngIf="loading">
     <app-loading-spinner></app-loading-spinner>
   </div>

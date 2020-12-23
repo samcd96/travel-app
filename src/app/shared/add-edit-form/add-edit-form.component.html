@@ -1,6 +1,6 @@
 <form 
   #addTripForm="ngForm"
-  (ngSubmit)="onSubmitAddTrip(addTripForm)"
+  (ngSubmit)="onSubmitAddEditTrip(addTripForm)"
   class="__form">
   <div class="trip__name">
     <label for="tripName">Trip Name:</label>
@@ -124,7 +124,7 @@
         <img src="https://trips-bucket-sdlkhfwijdn12-dev.s3.eu-west-2.amazonaws.com/defaultCoverImage.png">
       </div>
       <div *ngIf="!isImageSaved && trip">
-        <img src="trip.coverImage">
+        <img src="{{trip.coverImage}}">
       </div>
     </div>
 

@@ -15,12 +15,19 @@ import { Router } from '@angular/router';
 export class AuthComponent implements OnInit {
   public user: any;
   public signInMode = true;
+  public forgotPasswordMode = false;
+  public changePasswordMode = false;
+  public authenticate = true;
   public error: string;
+  public email: string;
+  public message: string;
   constructor(public store: Store<fromApp.AppState>, public router: Router) {}
 
   ngOnInit() {}
 
-  onSubmit(form: NgForm) {
+  // Operations
+
+  onSubmitSignLogIn(form: NgForm) {
     if (this.signInMode) {
       this.onSignIn(form);
     } else {
@@ -44,9 +51,10 @@ export class AuthComponent implements OnInit {
 
   onSignUp(form: NgForm) {
     Auth.signUp(form.value.userName, form.value.password)
-      .then((stuff) => {
-        console.log(stuff);
+      .then(() => {
         this.error = null;
+        this.onAuthenticate();
+        this.displayMessage('Signed up successfully!');
       })
       .catch((error) => {
         console.log(error);
@@ -54,7 +62,70 @@ export class AuthComponent implements OnInit {
       });
   }
 
+  onSubmitChangePassword(form: NgForm) {
+    Auth.forgotPasswordSubmit(
+      this.email,
+      form.value.code,
+      form.value.new_password
+    )
+      .then(() => {
+        this.error = null;
+        this.onAuthenticate();
+        this.displayMessage('Password reset!');
+      })
+      .catch((error) => {
+        console.log(error);
+        this.error = error.message;
+      });
+  }
+
+  onSubmitForgotPassword(form: NgForm) {
+    this.email = form.value.userName;
+    Auth.forgotPassword(this.email)
+      .then(() => {
+        this.error = null;
+        this.onChangePassword();
+        this.displayMessage(
+          `Code set to ${this.email}. Use this to reset your password!`
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+        this.error = error.message;
+      });
+  }
+
+  displayMessage(message: string) {
+    this.message = message;
+    setTimeout(() => {
+      this.message = null;
+    }, 3000);
+  }
+
+  // Changing modes
+
   onChangeAuthMode() {
     this.signInMode = !this.signInMode;
+  }
+
+  onAuthenticate() {
+    this.forgotPasswordMode = false;
+    this.signInMode = true;
+    this.authenticate = true;
+    this.changePasswordMode = false;
+    this.error = null;
+  }
+
+  onForgetPassword() {
+    this.forgotPasswordMode = true;
+    this.authenticate = false;
+    this.changePasswordMode = false;
+    this.error = null;
+  }
+
+  onChangePassword() {
+    this.forgotPasswordMode = false;
+    this.authenticate = false;
+    this.changePasswordMode = true;
   }
 }
